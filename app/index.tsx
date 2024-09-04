@@ -31,17 +31,23 @@ export default function Index() {
       }
    };
 
-   const handlePIDChange = () => {
+   type PIDValues = {
+      pValue: number;
+      iValue: number;
+      dValue: number;
+   };
+
+   const handlePIDChange = ({ pValue, iValue, dValue }: PIDValues) => {
       console.log("PID Change");
       const url = `http://${ipAddress}/pid`;
-      console.log(url)
+      console.log(url);
       if (ipAddress) {
          axios
             .get(url, {
                params: {
-                  kp,
-                  ki,
-                  kd,
+                  kp: pValue,
+                  ki: iValue,
+                  kd: dValue,
                },
             })
             .then((res) => console.log(res.data))
@@ -137,7 +143,11 @@ export default function Index() {
                      value={kp}
                      onValueChange={(value) => {
                         setKp(parseFloat(value.toFixed(2)));
-                        handlePIDChange();
+                        handlePIDChange({
+                           pValue: value,
+                           iValue: ki,
+                           dValue: kd,
+                        });
                      }}
                   />
                   <Text style={{ marginLeft: 12 }}>{kp}</Text>
@@ -167,7 +177,11 @@ export default function Index() {
                      value={ki}
                      onValueChange={(value) => {
                         setKi(parseFloat(value.toFixed(2)));
-                        handlePIDChange();
+                        handlePIDChange({
+                           pValue: kp,
+                           iValue: value,
+                           dValue: kd,
+                        });
                      }}
                   />
                   <Text style={{ marginLeft: 12 }}>{ki}</Text>
@@ -197,7 +211,11 @@ export default function Index() {
                      value={kd}
                      onValueChange={(value) => {
                         setKd(parseFloat(value.toFixed(2)));
-                        handlePIDChange();
+                        handlePIDChange({
+                           pValue: kp,
+                           iValue: ki,
+                           dValue: value,
+                        });
                      }}
                   />
                   <Text style={{ marginLeft: 12 }}>{kd}</Text>
