@@ -90,7 +90,6 @@ export default function Index() {
                </Text>
                <View
                   style={{
-                     flex: 1,
                      flexDirection: "row",
                      alignItems: "center",
                   }}
@@ -109,7 +108,7 @@ export default function Index() {
                         handlePositionChange(value);
                      }}
                   />
-                  <Text style={{ marginLeft: 12 }}>{ballPosition}</Text>
+                  <Text style={{ marginLeft: 12, color: black }}>{ballPosition}</Text>
                </View>
             </View>
          </View>
@@ -127,7 +126,6 @@ export default function Index() {
                <Text style={{ color: black, marginTop: 16 }}>Kp Value</Text>
                <View
                   style={{
-                     flex: 1,
                      flexDirection: "row",
                      alignItems: "center",
                   }}
@@ -161,7 +159,6 @@ export default function Index() {
                <Text style={{ color: black, marginTop: 16 }}>Ki Value</Text>
                <View
                   style={{
-                     flex: 1,
                      flexDirection: "row",
                      alignItems: "center",
                   }}
@@ -195,7 +192,6 @@ export default function Index() {
                <Text style={{ color: black, marginTop: 16 }}>Kd Value</Text>
                <View
                   style={{
-                     flex: 1,
                      flexDirection: "row",
                      alignItems: "center",
                   }}
