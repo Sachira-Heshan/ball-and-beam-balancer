@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "ball-and-beam-balance",
+    "name": "Ball and Beam Balancer",
     "slug": "ball-and-beam-balance",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -31,6 +31,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "c033dbae-63b6-4408-b775-1c9044b9bd95"
+      }
     }
   }
 }
