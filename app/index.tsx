@@ -13,6 +13,8 @@ export default function Index() {
    const [ki, setKi] = useState<number>(0);
    const [kd, setKd] = useState<number>(0);
 
+   const [response, setResponse] = useState<string>("");
+
    const bgColor = "#dbdbdb";
    const lightGray = "#666666";
    const black = "#000000";
@@ -26,7 +28,10 @@ export default function Index() {
       if (ipAddress) {
          axios
             .get(url)
-            .then((res) => console.log(res.data))
+            .then((res) => {
+               console.log("Set point Data: ", res.data);
+               setResponse(res.data + ": " + res.request.responseURL);
+            })
             .catch((e) => console.log(e));
       }
    };
@@ -50,7 +55,10 @@ export default function Index() {
                   kd: dValue,
                },
             })
-            .then((res) => console.log(res.data))
+            .then((res) => {
+               console.log("PID: ", res);
+               setResponse(res.data + ": " + res.request.responseURL);
+            })
             .catch((e) => console.log(e));
       }
    };
@@ -65,6 +73,8 @@ export default function Index() {
             padding: 16,
          }}
       >
+         <Text style={{ color: black, fontSize: 24 }}>PID Controller</Text>
+         <Text style={{ color: black, marginVertical: 16 }}>{response}</Text>
          <TextInput
             label="IP Address"
             value={ipAddress}
@@ -142,7 +152,7 @@ export default function Index() {
                      onValueChange={(value) => {
                         setKp(parseFloat(value.toFixed(2)));
                         handlePIDChange({
-                           pValue: value,
+                           pValue: parseFloat(value.toFixed(2)),
                            iValue: ki,
                            dValue: kd,
                         });
@@ -176,7 +186,7 @@ export default function Index() {
                         setKi(parseFloat(value.toFixed(2)));
                         handlePIDChange({
                            pValue: kp,
-                           iValue: value,
+                           iValue: parseFloat(value.toFixed(2)),
                            dValue: kd,
                         });
                      }}
@@ -210,7 +220,7 @@ export default function Index() {
                         handlePIDChange({
                            pValue: kp,
                            iValue: ki,
-                           dValue: value,
+                           dValue: parseFloat(value.toFixed(2)),
                         });
                      }}
                   />
