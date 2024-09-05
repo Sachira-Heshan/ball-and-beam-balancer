@@ -14,6 +14,7 @@ export default function Index() {
    const [kd, setKd] = useState<number>(0);
 
    const [response, setResponse] = useState<string>("");
+   const [error, setError] = useState<string>("");
 
    const bgColor = "#dbdbdb";
    const lightGray = "#666666";
@@ -32,7 +33,10 @@ export default function Index() {
                console.log("Set point Data: ", res.data);
                setResponse(res.data + ": " + res.request.responseURL);
             })
-            .catch((e) => console.log(e));
+            .catch((e) => {
+               console.log(e);
+               setError(e);
+            });
       }
    };
 
@@ -59,7 +63,10 @@ export default function Index() {
                console.log("PID: ", res);
                setResponse(res.data + ": " + res.request.responseURL);
             })
-            .catch((e) => console.log(e));
+            .catch((e) => {
+               console.log(e);
+               setError(e);
+            });
       }
    };
 
@@ -74,7 +81,9 @@ export default function Index() {
          }}
       >
          <Text style={{ color: black, fontSize: 24 }}>PID Controller</Text>
-         <Text style={{ color: black, marginVertical: 16 }}>{response}</Text>
+         <Text style={{ color: black, marginTop: 16 }}>IP Address: {ipAddress}</Text>
+         <Text style={{ color: black, marginTop: 16 }}>Response: {response}</Text>
+         <Text style={{ color: black, marginVertical: 16 }}>Error: {error}</Text>
          <TextInput
             label="IP Address"
             value={ipAddress}
