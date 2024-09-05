@@ -28,7 +28,11 @@ export default function Index() {
       console.log(url);
       if (ipAddress) {
          axios
-            .get(url)
+            .get(url, {
+               headers: {
+                  "Content-Type": "application/json",
+               },
+            })
             .then((res) => {
                console.log("Set point Data: ", res.data);
                setResponse(res.data + ": " + res.request.responseURL);
@@ -57,6 +61,9 @@ export default function Index() {
                   kp: pValue,
                   ki: iValue,
                   kd: dValue,
+               },
+               headers: {
+                  "Content-Type": "application/json",
                },
             })
             .then((res) => {
