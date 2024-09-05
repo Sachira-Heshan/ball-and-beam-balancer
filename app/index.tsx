@@ -24,7 +24,7 @@ export default function Index() {
 
    const handlePositionChange = (positionValue: number) => {
       console.log("Position Change");
-      const url = `http://${ipAddress}/setpoint?value=${positionValue}`;
+      const url = `http://${ipAddress}/set-point?value=${positionValue}`;
       console.log(url);
       if (ipAddress) {
          axios
@@ -35,7 +35,7 @@ export default function Index() {
             })
             .catch((e) => {
                console.log(e);
-               setError(e);
+               setError(e.message);
             });
       }
    };
@@ -65,7 +65,7 @@ export default function Index() {
             })
             .catch((e) => {
                console.log(e);
-               setError(e);
+               setError(e.message);
             });
       }
    };
